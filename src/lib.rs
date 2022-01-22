@@ -140,7 +140,6 @@ impl Universe {
         
         log!("Universe be like {}*{}", width, height);
         
-
         Universe {
             width,
             height,
