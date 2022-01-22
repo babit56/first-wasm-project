@@ -132,11 +132,11 @@ impl Universe {
         let height = 65;
 
         let size = (width * height) as usize;
-        let cells = FixedBitSet::with_capacity(size);
+        let mut cells = FixedBitSet::with_capacity(size);
 
-        // for i in 0..size {
-        //     cells.set(i, i % 2 == 0 || i % 7 == 0)
-        // }
+        for i in 0..size {
+            cells.set(i, i % 2 == 0 || i % 7 == 0)
+        }
         
         log!("Universe be like {}*{}", width, height);
         
@@ -198,7 +198,6 @@ impl Universe {
                     col
                 };
                 let idx = self.get_index(row, col);
-                log!("idx:{}, row:{}, col:{}", idx, row, col);
                 let state = pattern.get_bit(row_local, col_local);
                 self.cells.set(idx, state);
             }

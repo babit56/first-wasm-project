@@ -14,11 +14,11 @@ const universe = Universe.new();
 const width = universe.width();
 const height = universe.height();
 
-for (let i = 0; i < width; i += 5) {
-  for (let j = 0; j < height; j += 5) {
-    universe.insert_pattern(i, j, PatternType.Glider);
-  }
-}
+// for (let i = 0; i < width; i += 5) {
+//   for (let j = 0; j < height; j += 5) {
+//     universe.insert_pattern(i, j, PatternType.Glider);
+//   }
+// }
 
 // Give the canvas room for all of our cells and a 1px border
 // around each of them.

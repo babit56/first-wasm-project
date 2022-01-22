@@ -11,6 +11,5 @@
   ],
   "module": "game_of_life_wasm.js",
   "types": "game_of_life_wasm.d.ts",
-  "sideEffects": false,
-  "homepage": "https://babit56.github.io/first-wasm-project/"
+  "sideEffects": false
 }
