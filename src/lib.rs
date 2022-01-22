@@ -128,8 +128,8 @@ impl Universe {
     pub fn new() -> Universe {
         utils::set_panic_hook();
 
-        let width = 65;
-        let height = 65;
+        let width = 64;
+        let height = 64;
 
         let size = (width * height) as usize;
         let mut cells = FixedBitSet::with_capacity(size);
