@@ -1,5 +1,8 @@
 # WoOoO
 
+[![Build and deploy static page](https://github.com/babit56/first-wasm-project/actions/workflows/main.yml/badge.svg)](https://github.com/babit56/first-wasm-project/actions/workflows/main.yml)
+![GitHub license](https://img.shields.io/github/license/babit56/first-wasm-project.svg)
+
 ## Honestly
 
 We are **gaming**
