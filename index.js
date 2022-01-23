@@ -1,7 +1,7 @@
 import init, { Universe, PatternType } from "./pkg/game_of_life_wasm.js";
 //import { memory } from "game-of-life-wasm/game_of_life_wasm_bg";
 
-const wasm = await init();
+const wasm = await init('./pkg/game_of_life_wasm_bg.wasm');
 const memory = wasm.memory;
 
 const CELL_SIZE = 5; // px
