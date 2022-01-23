@@ -25,6 +25,8 @@ jobs:
           persist-credentials: false
       - name: Generate Frontend
         uses: acblog/wasm-ghpages-generate-action@master
+        with:
+          app: '.'
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
