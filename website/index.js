@@ -1,4 +1,4 @@
-import init, { Universe, PatternType } from "../pkg/game_of_life_wasm.js";
+import init, { Universe, PatternType } from "./pkg/game_of_life_wasm.js";
 //import { memory } from "game-of-life-wasm/game_of_life_wasm_bg";
 
 const wasm = await init();
