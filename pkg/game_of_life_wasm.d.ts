@@ -62,6 +62,13 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_pattern_free: (a: number) => void;
+  readonly __wbg_get_pattern_width: (a: number) => number;
+  readonly __wbg_set_pattern_width: (a: number, b: number) => void;
+  readonly __wbg_get_pattern_height: (a: number) => number;
+  readonly __wbg_set_pattern_height: (a: number, b: number) => void;
+  readonly __wbg_get_pattern_pattern: (a: number) => number;
+  readonly __wbg_set_pattern_pattern: (a: number, b: number) => void;
   readonly __wbg_universe_free: (a: number) => void;
   readonly universe_tick: (a: number) => void;
   readonly universe_new: () => number;
@@ -71,13 +78,6 @@ export interface InitOutput {
   readonly universe_set_height: (a: number, b: number) => void;
   readonly universe_cells: (a: number) => number;
   readonly universe_insert_pattern: (a: number, b: number, c: number, d: number) => void;
-  readonly __wbg_pattern_free: (a: number) => void;
-  readonly __wbg_get_pattern_width: (a: number) => number;
-  readonly __wbg_set_pattern_width: (a: number, b: number) => void;
-  readonly __wbg_get_pattern_height: (a: number) => number;
-  readonly __wbg_set_pattern_height: (a: number, b: number) => void;
-  readonly __wbg_get_pattern_pattern: (a: number) => number;
-  readonly __wbg_set_pattern_pattern: (a: number, b: number) => void;
   readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
