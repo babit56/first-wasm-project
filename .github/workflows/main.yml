@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        # with:
-        #   persist-credentials: false
       
       - name: Install wasm-pack
         uses: jetli/wasm-pack-action@v0.3.0
@@ -30,10 +28,10 @@ jobs:
           # Optional version of wasm-pack to install(eg. 'v0.9.1', 'latest')
           version: 'latest'
       
-      - run: wasm-pack build --target web
+      - run: wasm-pack build --target web --out-dir website/pkg
       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           branch: gh-pages
-          folder: .
+          folder: website
