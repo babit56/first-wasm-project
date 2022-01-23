@@ -4,6 +4,8 @@
 
 We are **gaming**
 
+[**THE SITE**](https://babit56.github.io/first-wasm-project/)
+
 ## 🔋 Batteries Included
 
 * [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
