@@ -27,6 +27,7 @@ jobs:
         uses: acblog/wasm-ghpages-generate-action@master
         with:
           app: '.'
+          dist: './pkg'
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
