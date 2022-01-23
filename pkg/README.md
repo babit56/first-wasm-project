@@ -3,7 +3,7 @@
 ![GitHub license](https://img.shields.io/github/license/babit56/first-wasm-project.svg)
 [![Build and deploy static page](https://github.com/babit56/first-wasm-project/actions/workflows/main.yml/badge.svg)](https://github.com/babit56/first-wasm-project/actions/workflows/main.yml)
 
-## Honestly
+### Honestly
 
 We are **gaming**
 
@@ -17,3 +17,9 @@ We are **gaming**
   for logging panic messages to the developer console.
 * [`wee_alloc`](https://github.com/rustwasm/wee_alloc), an allocator optimized
   for small code size.
+
+---
+
+### License
+
+This project is licensed under the MIT license. See the [LICENSE file](LICENSE) for details
