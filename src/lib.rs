@@ -3,6 +3,7 @@ mod utils;
 extern crate fixedbitset;
 
 extern crate web_sys;
+use::web_sys::console;
 
 use fixedbitset::FixedBitSet;
 
@@ -19,17 +20,26 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 // A macro to provide `println!(..)`-style syntax for `console.log` logging.
 macro_rules! log {
     ( $( $t:tt )* ) => {
-        web_sys::console::log_1(&format!( $( $t )* ).into());
+        console::log_1(&format!( $( $t )* ).into());
     }
 }
 
-// #[wasm_bindgen]
-// #[repr(u8)]
-// #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-// pub enum Cell {
-//     Dead = 0,
-//     Alive = 1,
-// }
+pub struct Timer<'a> {
+    name: &'a str,
+}
+
+impl<'a> Timer<'a> {
+    pub fn new(name: &'a str) -> Timer<'a> {
+        console::time_with_label(name);
+        Timer { name }
+    }
+}
+
+impl<'a> Drop for Timer<'a> {
+    fn drop(&mut self) {
+        console::time_end_with_label(self.name);
+    }
+}
 
 #[wasm_bindgen]
 pub struct Universe {
@@ -43,8 +53,8 @@ impl Universe {
     pub fn new() -> Universe {
         utils::set_panic_hook();
 
-        let width = 64;
-        let height = 64;
+        let width = 128;
+        let height = 128;
 
         let size = (width * height) as usize;
         let mut cells = FixedBitSet::with_capacity(size);
@@ -121,29 +131,37 @@ impl Universe {
     }
 
     pub fn tick(&mut self) {
-        let mut next = self.cells.clone();
+        // let _timer = Timer::new("Universe::tick");
+        let mut next = {
+            // let _timer = Timer::new("Allocate next cells");
+            self.cells.clone()
+        };
 
-        for row in 0..self.height {
-            for col in 0..self.width {
-                let idx = self.get_index(row, col);
-                let cell = self.cells[idx];
-                let live_neighbors = self.live_neighbor_count(row, col);
+        {
+            // let _timer = Timer::new("new generation");
+            for row in 0..self.height {
+                for col in 0..self.width {
+                    let idx = self.get_index(row, col);
+                    let cell = self.cells[idx];
+                    let live_neighbors = self.live_neighbor_count(row, col);
 
-                next.set(idx, match (cell, live_neighbors) {
-                    // Alive and less than two neighbors
-                    (true, x) if x < 2 => false,
-                    // Alive and two or three neighbors
-                    (true, 2) | (true, 3) => true,
-                    // Alive and more than three neighbors
-                    (true, x) if x > 3 => false,
-                    // Dead and three neighbors
-                    (false, 3) => true,
-                    // Dead
-                    (otherwise, _) => otherwise
-                });
+                    next.set(idx, match (cell, live_neighbors) {
+                        // Alive and less than two neighbors
+                        (true, x) if x < 2 => false,
+                        // Alive and two or three neighbors
+                        (true, 2) | (true, 3) => true,
+                        // Alive and more than three neighbors
+                        (true, x) if x > 3 => false,
+                        // Dead and three neighbors
+                        (false, 3) => true,
+                        // Dead
+                        (otherwise, _) => otherwise
+                    });
+                }
             }
         }
 
+        // let _timer = Timer::new("Free old cells");
         self.cells = next;
     }
 

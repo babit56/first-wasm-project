@@ -6,3 +6,4 @@ bin/
 wasm-pack.log
 .vscode
 www/
+before.txt
