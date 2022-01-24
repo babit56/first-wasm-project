@@ -4,6 +4,7 @@
 */
 export enum PatternType {
   Glider,
+  PrePulsar,
 }
 /**
 */

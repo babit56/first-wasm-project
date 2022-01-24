@@ -110,7 +110,7 @@ function getInt32Memory0() {
 }
 /**
 */
-export const PatternType = Object.freeze({ Glider:0,"0":"Glider", });
+export const PatternType = Object.freeze({ Glider:0,"0":"Glider",PrePulsar:1,"1":"PrePulsar", });
 /**
 */
 export class Pattern {

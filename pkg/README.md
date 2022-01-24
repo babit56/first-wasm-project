@@ -3,9 +3,9 @@
 ![GitHub license](https://img.shields.io/github/license/babit56/first-wasm-project.svg)
 [![Build and deploy static page](https://github.com/babit56/first-wasm-project/actions/workflows/main.yml/badge.svg)](https://github.com/babit56/first-wasm-project/actions/workflows/main.yml)
 
-### Honestly
+### Todo
 
-We are **gaming**
+- [ ] Better pattern chooser (and pattern placer)
 
 [**THE SITE**](https://babit56.github.io/first-wasm-project/)
 
