@@ -40,6 +40,28 @@ pub struct Universe {
 
 #[wasm_bindgen]
 impl Universe {
+    pub fn new() -> Universe {
+        utils::set_panic_hook();
+
+        let width = 64;
+        let height = 64;
+
+        let size = (width * height) as usize;
+        let mut cells = FixedBitSet::with_capacity(size);
+
+        for i in 0..size {
+            cells.set(i, i % 2 == 0 || i % 7 == 0)
+        }
+        
+        log!("Universe be like {}*{}", width, height);
+        
+        Universe {
+            width,
+            height,
+            cells,
+        }
+    }
+
     fn get_index(&self, row: u32, column: u32) -> usize {
         (row * self.width + column) as usize
     }
@@ -125,34 +147,11 @@ impl Universe {
         self.cells = next;
     }
 
-    pub fn new() -> Universe {
-        utils::set_panic_hook();
-
-        let width = 64;
-        let height = 64;
-
-        let size = (width * height) as usize;
-        let mut cells = FixedBitSet::with_capacity(size);
-
-        for i in 0..size {
-            cells.set(i, i % 2 == 0 || i % 7 == 0)
-        }
-        
-        log!("Universe be like {}*{}", width, height);
-        
-        Universe {
-            width,
-            height,
-            cells,
-        }
-    }
-
     pub fn width(&self) -> u32 {
         self.width
     }
 
     // Set the width of the universe.
-    //
     // Resets all cells to the dead state.
     pub fn set_width(&mut self, width: u32) {
         self.width = width;
@@ -165,7 +164,6 @@ impl Universe {
     }
 
     // Set the height of the universe.
-    //
     // Resets all cells to the dead state.
     pub fn set_height(&mut self, height: u32) {
         self.height = height;
@@ -177,15 +175,15 @@ impl Universe {
         self.cells.as_slice().as_ptr()
     }
 
-    pub fn insert_pattern(&mut self, x: u32, y: u32, pattern_type: patterns::PatternType) {
+    pub fn insert_pattern(&mut self, y: u32, x: u32, pattern_type: patterns::PatternType) {
         let pattern = match pattern_type {
             patterns::PatternType::Glider => &patterns::GLIDER,
         };
         
         for row_local in 0..pattern.height {
             for col_local in 0..pattern.width {
-                let mut row = y + row_local;
-                let mut col = x + col_local;
+                let mut row: u32 = y + row_local - pattern.height/2;
+                let mut col: u32 = x + col_local - pattern.width/2;
                 row = if row >= self.height {
                     row - self.height
                 } else {
@@ -201,6 +199,25 @@ impl Universe {
                 self.cells.set(idx, state);
             }
         }
+    }
+
+    pub fn toggle_cell(&mut self, row: u32, column: u32) {
+        let idx = self.get_index(row, column);
+        self.cells.toggle(idx);
+    }
+
+    pub fn reset(&mut self) {
+        self.cells.clear();
+
+        let size = self.cells.len();
+
+        for i in 0..size {
+            self.cells.set(i, i % 2 == 0 || i % 7 == 0)
+        }
+    }
+
+    pub fn clear(&mut self) {
+        self.cells.clear();
     }
 }
 
