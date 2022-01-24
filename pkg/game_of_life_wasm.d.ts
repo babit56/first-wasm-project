@@ -24,12 +24,12 @@ export class Pattern {
 export class Universe {
   free(): void;
 /**
-*/
-  tick(): void;
-/**
 * @returns {Universe}
 */
   static new(): Universe;
+/**
+*/
+  tick(): void;
 /**
 * @returns {number}
 */
@@ -51,11 +51,22 @@ export class Universe {
 */
   cells(): number;
 /**
-* @param {number} x
 * @param {number} y
+* @param {number} x
 * @param {number} pattern_type
 */
-  insert_pattern(x: number, y: number, pattern_type: number): void;
+  insert_pattern(y: number, x: number, pattern_type: number): void;
+/**
+* @param {number} row
+* @param {number} column
+*/
+  toggle_cell(row: number, column: number): void;
+/**
+*/
+  reset(): void;
+/**
+*/
+  clear(): void;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -70,14 +81,17 @@ export interface InitOutput {
   readonly __wbg_get_pattern_pattern: (a: number) => number;
   readonly __wbg_set_pattern_pattern: (a: number, b: number) => void;
   readonly __wbg_universe_free: (a: number) => void;
-  readonly universe_tick: (a: number) => void;
   readonly universe_new: () => number;
+  readonly universe_tick: (a: number) => void;
   readonly universe_width: (a: number) => number;
   readonly universe_set_width: (a: number, b: number) => void;
   readonly universe_height: (a: number) => number;
   readonly universe_set_height: (a: number, b: number) => void;
   readonly universe_cells: (a: number) => number;
   readonly universe_insert_pattern: (a: number, b: number, c: number, d: number) => void;
+  readonly universe_toggle_cell: (a: number, b: number, c: number) => void;
+  readonly universe_reset: (a: number) => void;
+  readonly universe_clear: (a: number) => void;
   readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;

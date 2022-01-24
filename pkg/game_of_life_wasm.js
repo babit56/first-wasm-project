@@ -186,16 +186,16 @@ export class Universe {
         wasm.__wbg_universe_free(ptr);
     }
     /**
-    */
-    tick() {
-        wasm.universe_tick(this.ptr);
-    }
-    /**
     * @returns {Universe}
     */
     static new() {
         var ret = wasm.universe_new();
         return Universe.__wrap(ret);
+    }
+    /**
+    */
+    tick() {
+        wasm.universe_tick(this.ptr);
     }
     /**
     * @returns {number}
@@ -231,12 +231,29 @@ export class Universe {
         return ret;
     }
     /**
-    * @param {number} x
     * @param {number} y
+    * @param {number} x
     * @param {number} pattern_type
     */
-    insert_pattern(x, y, pattern_type) {
-        wasm.universe_insert_pattern(this.ptr, x, y, pattern_type);
+    insert_pattern(y, x, pattern_type) {
+        wasm.universe_insert_pattern(this.ptr, y, x, pattern_type);
+    }
+    /**
+    * @param {number} row
+    * @param {number} column
+    */
+    toggle_cell(row, column) {
+        wasm.universe_toggle_cell(this.ptr, row, column);
+    }
+    /**
+    */
+    reset() {
+        wasm.universe_reset(this.ptr);
+    }
+    /**
+    */
+    clear() {
+        wasm.universe_clear(this.ptr);
     }
 }
 
