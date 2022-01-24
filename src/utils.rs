@@ -25,6 +25,7 @@ pub mod patterns {
     #[wasm_bindgen]
     pub enum PatternType {
         Glider,
+        PrePulsar,
     }
 
     impl Pattern {
@@ -39,5 +40,11 @@ pub mod patterns {
         width: 3,
         height: 3,
         pattern: 0b001101011, // 001101011
+    };
+
+    pub const PREPULSAR: Pattern = Pattern {
+        width: 9,
+        height: 3,
+        pattern: 0b111000111101000101111000111
     };
 }

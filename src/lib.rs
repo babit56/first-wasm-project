@@ -178,6 +178,7 @@ impl Universe {
     pub fn insert_pattern(&mut self, y: u32, x: u32, pattern_type: patterns::PatternType) {
         let pattern = match pattern_type {
             patterns::PatternType::Glider => &patterns::GLIDER,
+            patterns::PatternType::PrePulsar => &patterns::PREPULSAR,
         };
         
         for row_local in 0..pattern.height {

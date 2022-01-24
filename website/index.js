@@ -35,7 +35,9 @@ canvas.addEventListener("click", event => {
   const col = Math.min(Math.floor(canvasLeft / (CELL_SIZE + 1)), width - 1);
 
   if (event.ctrlKey) {
-    universe.insert_pattern(row, col, PatternType.Glider)
+    universe.insert_pattern(row, col, PatternType.Glider);
+  } else if (event.shiftKey) {
+    universe.insert_pattern(row, col, PatternType.PrePulsar);
   } else {
     universe.toggle_cell(row, col);
   }
