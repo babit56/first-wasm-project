@@ -10,10 +10,37 @@ body {
     justify-content: center;
 }
 
-#fps {
+#sidebar {
     position: absolute;
     top: 0;
     left: 0;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#fps {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
     white-space: pre;
     font-family: monospace;
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#buttons > button {
+    flex: 1 1 auto;
+}
+
+#shapeSelection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row dense;
+    column-gap: 3px;
 }
