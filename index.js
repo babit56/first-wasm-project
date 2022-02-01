@@ -91,6 +91,7 @@ const ticksLabel = document.getElementById('ticks-range-label');
 const emptyButton = document.getElementById('empty');
 const restartButton = document.getElementById('restart');
 const advanceButton = document.getElementById('advanceOnce');
+const body = document.body;
 
 ticksPerSecondRange.addEventListener('change', event => {
   ticksPerSecond = event.target.valueAsNumber;
@@ -106,6 +107,15 @@ advanceButton.addEventListener('click', () => {
 
   // drawGrid();
   drawCells();
+});
+body.addEventListener('keydown', event => {
+  if (event.code === "Space") {
+    if (isPaused()) {
+      play();
+    } else {
+      pause();
+    }
+  }
 });
 
 const fps = new class {
